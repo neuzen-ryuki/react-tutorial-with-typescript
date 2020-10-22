@@ -17,25 +17,29 @@ const Board: React.FC<BoardProps> = ({ squares, onClick }) => {
     )
   };
 
+  const renderRow = (row: number) => {
+    return (
+      <div className="board-row">
+        {
+          [...Array(3)].map((_,i) => {
+            const index = row * 3 + i;
+            return(renderSquare(index));
+          })
+        }
+      </div>
+    );
+  };
+
   return (
     <div>
-      <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
-      </div>
-      <div className="board-row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
-      </div>
-      <div className="board-row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-      </div>
+      {
+        [...Array(3)].map((_,i) => {
+          return(renderRow(i));
+        })
+      }
     </div>
   );
+
 };
 
 export default Board;
